@@ -48,14 +48,14 @@ class App extends Component {
       }
       //if no error, notify user of success
       this.hideLoadingMessage();
-      // this.showSuccess("Success! Tasks loaded!");
+      this.showSuccess("Success! Tasks loaded!");
 
     }, errorMessage => {
       //if an error message occurs, notify the user.
       this.hideLoadingMessage();
-      // this.showError("Could not load server data. Server Error: '"
-      //   + errorMessage.error
-      //   + "'", false);
+      this.showError("Could not load server data. Server Error: '"
+        + errorMessage.error
+        + "'", false);
     })
   }
 
