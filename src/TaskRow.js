@@ -84,6 +84,7 @@ class TaskRow extends Component {
           <form style={{ display: "flex", flexGrow: 1, justifyContent: "space-between" }} onSubmit={this.state.error ? this.cancelEdit : this.doneEditing}>
             <input
               style={{ backgroundColor: "#e8e8e8" }}
+              autoFocus={true}
               type="text"
               value={this.state.text}
               onChange={this.changeTextHandler}
