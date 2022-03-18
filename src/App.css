@@ -25,7 +25,14 @@
 }
 
 .App-body {
-  min-height: 87vh;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-system {
+  min-height: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;

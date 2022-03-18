@@ -12,6 +12,7 @@ class App extends Component {
     loadingMessage: "",
     errorText: "",
     successText: "",
+    showSuccessErrorText: false,
   };
 
   componentDidMount() {
@@ -81,6 +82,38 @@ class App extends Component {
     }
   }
 
+  showError = (message) => {
+    if (this._isMounted) {
+      this.setState({
+        errorText: message,
+        text: "",
+        showSuccessErrorText: true,
+      })
+      setTimeout(() => {
+        this.setState({
+          showSuccessErrorText: false,
+          errorText: "",
+        });
+      }, 2000);
+    }
+  }
+
+  showSuccess = (message) => {
+    if (this._isMounted) {
+      this.setState({
+        successText: message,
+        text: "",
+        showSuccessErrorText: true,
+      })
+      setTimeout(() => {
+        this.setState({
+          showSuccessErrorText: false,
+          successText: "",
+        });
+      }, 2000);
+    }
+  }
+
   deleteTask = (i, item) => {
 
     //show a loading message indicating we are deleting the task
@@ -101,11 +134,13 @@ class App extends Component {
       }
       //hide loading message and show success to user
       this.hideLoadingMessage();
+      this.showSuccess("Task successfully deleted!");
 
     }, errorMessage => {
       //if error, we should ouput to user
       this.hideLoadingMessage();
-
+      this.showError("Cannot update task! Server Error: '"
+        + errorMessage.error + "'");
     });
 
   };
@@ -176,10 +211,13 @@ class App extends Component {
         }
         //show success message
         this.hideLoadingMessage();
+        this.showSuccess("Task successfully added!");
       },
         (errorMessage) => {
           //if there is an error, show an error message
           this.hideLoadingMessage();
+          this.showError("Cannot update task! Server Error: '"
+            + errorMessage.error + "'");
         });
     }
     else {
@@ -200,6 +238,10 @@ class App extends Component {
             onDelete={this.deleteTask}
           />
         </div>
+        <div className="App-system">
+          {this.state.isLoadingData ? this.state.loadingMessage : ""}
+          {this.state.showSuccessErrorText && (this.state.errorText || this.state.successText)}
+        </div>
         <footer className="App-footer">
           <form onSubmit={this.addTask}>
             <input
@@ -210,6 +252,7 @@ class App extends Component {
             />
           </form>
         </footer>
+
       </div>
     );
   }
