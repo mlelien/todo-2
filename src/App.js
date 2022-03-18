@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, { Component } from "react";
 import './App.css';
 import TaskList from './TaskList';
@@ -261,7 +260,7 @@ class App extends Component {
   }
 }
 
-const userId = 'BHAVIK_PATEL_REACT';
+const userId = 'DEV_CANDIDATE';
 
 const Tasks = {
   getTasks(callback, error) {
