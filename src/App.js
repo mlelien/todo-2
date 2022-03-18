@@ -190,26 +190,30 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          To-Do List
-        </header>
-        <div className="App-body">
-          <TaskList
-            tasks={this.state.tasks}
-            onDoneEditing={this.updateTask}
-            onDelete={this.deleteTask}
-          />
-        </div>
-        <footer className="App-footer">
-          <form onSubmit={this.addTask}>
-            <input
-              type="text"
-              value={this.state.text}
-              onChange={this.changeTextHandler}
-              placeholder={"Add Tasks"}
+        <div className="App-container">
+          <header className="App-header">
+            To-Do List
+          </header>
+          <div style={this.state.tasks.length > 10 ? { overflowY: "scroll" } : null} className="App-body">
+            <TaskList
+              tasks={this.state.tasks}
+              onDoneEditing={this.updateTask}
+              onDelete={this.deleteTask}
             />
-          </form>
-        </footer>
+          </div>
+          <div className="border"/>
+          <footer className="App-footer">
+            <form className="form" onSubmit={this.addTask}>
+              <input
+                className="textInput"
+                type="text"
+                value={this.state.text}
+                onChange={this.changeTextHandler}
+                placeholder={"Add Tasks"}
+              />
+            </form>
+          </footer>
+        </div>
       </div>
     );
   }

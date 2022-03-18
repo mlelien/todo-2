@@ -5,7 +5,7 @@ import TaskRow from "./TaskRow";
 
 function TaskList(props) {
   return (
-    <div>
+    <React.Fragment>
       {props.tasks.map((t, index) =>
         <TaskRow
           key={t.key}
@@ -16,7 +16,7 @@ function TaskList(props) {
           onDelete={props.onDelete
         }/>)
       }
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -68,25 +68,27 @@ class TaskRow extends Component {
   }
 
   _renderTask = () => {
-    return (<div style={{ flexDirection: "row" }}>
-      <div onClick={() => this.setState({ editing: true })}>
-        {this.props.text}
-      </div>
-      <button onClick={() => this.props.onDelete(this.props.index, this.props.item)}>X</button>;
-    </div>);
+    return (
+      <React.Fragment>
+        <div onClick={() => this.setState({ editing: true })}>{this.props.text}</div>
+        <button className="rowButton" onClick={() => this.props.onDelete(this.props.index, this.props.item)}>X</button>
+      </React.Fragment>
+    );
   };
 
   render() {
     return (
-      <div>
+      <div className="row">
         {!this.state.editing && this._renderTask() }
         {this.state.editing &&
-          <form onSubmit={this.state.error ? this.cancelEdit : this.doneEditing}>
+          <form style={{ display: "flex", flexGrow: 1, justifyContent: "space-between" }} onSubmit={this.state.error ? this.cancelEdit : this.doneEditing}>
             <input
+              style={{ backgroundColor: "#e8e8e8" }}
               type="text"
               value={this.state.text}
               onChange={this.changeTextHandler}
             />
+            <button className="rowButton" onClick={() => this.props.onDoneEditing(this.state.text, this.props.item, this.props.index)}>DONE</button>
           </form>
         }
       </div>
