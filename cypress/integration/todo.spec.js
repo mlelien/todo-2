@@ -1,6 +1,6 @@
 describe('all tests', () => {
     it('initial load and data', () => {
-        cy.visit('localhost:8000')
+        cy.visit('https://fanciful-cactus-01742d.netlify.app/')
         cy.rowLengthCheck(11)
 
         cy.get('.row').each((row, i) => { 
